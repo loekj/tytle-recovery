@@ -1,0 +1,5 @@
+* text=auto eol=lf
+# The contract sources and the chain fixtures must stay byte-exact: their bytes
+# go into the contract's metadata hash and into the recorded keccak256 hashes.
+contracts/** -text
+fixtures/** -text

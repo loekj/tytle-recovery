@@ -1,0 +1,33 @@
+{
+  "_provenance": "Verified ABIs from Sourcify (chain 100), written by scripts/record-abis.ts. SocialRecoveryModule.json comes from our build.",
+  "abis": {
+    "SafeL2": {
+      "what": "Safe 1.4.1 SafeL2 singleton: the code every Tytle account runs (through a proxy)",
+      "address": "0x29fcB43b46531BcA003ddC8FCB67FFE91900C762",
+      "sourcify": {
+        "match": "exact_match",
+        "fullyQualifiedName": "contracts/SafeL2.sol:SafeL2",
+        "compilerVersion": "0.7.6+commit.7338295f"
+      }
+    },
+    "SafeProxyFactory": {
+      "what": "Safe 1.4.1 proxy factory (the tests make accounts with it)",
+      "address": "0x4e1DCf7AD4e460CfD30791CCC4F9c8a4f820ec67",
+      "sourcify": {
+        "match": "exact_match",
+        "fullyQualifiedName": "contracts/proxies/SafeProxyFactory.sol:SafeProxyFactory",
+        "compilerVersion": "0.7.6+commit.7338295f"
+      }
+    },
+    "EURe": {
+      "what": "Monerium EURe v2 on Gnosis (an ERC-1967 proxy): the token the accounts' euros are",
+      "address": "0x420CA0f9B9b604cE0fd9C18EF134C705e5Fa3430",
+      "implementation": "0x60cb9FdD0fcFd9BB3b2B721864Db5E7C07F4635D",
+      "sourcify": {
+        "match": "exact_match",
+        "fullyQualifiedName": "src/GnosisControllerToken.sol:GnosisControllerToken",
+        "compilerVersion": "0.8.20+commit.a1b79de6"
+      }
+    }
+  }
+}

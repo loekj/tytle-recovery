@@ -1,0 +1,47 @@
+{
+  "name": "tytle-recovery",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Tytle account exit: a 90-day copy of Candide's SocialRecoveryModule on Gnosis, and a static exit page that needs only the 12 recovery words.",
+  "license": "GPL-3.0-only",
+  "type": "module",
+  "engines": {
+    "node": ">=24"
+  },
+  "scripts": {
+    "test": "HARDHAT_DISABLE_TELEMETRY=true node --test 'test/**/*.test.ts'",
+    "typecheck": "tsc -p .",
+    "check:bytecode": "node scripts/check-bytecode.ts",
+    "build:abi": "node scripts/build-abi.ts",
+    "build:page": "node scripts/build-page.ts",
+    "check:reproducible": "node scripts/build-page.ts --twice",
+    "deploy:print": "node scripts/deploy-exit-module.ts --offline",
+    "net:deploy-check": "node scripts/deploy-exit-module.ts",
+    "net:verify": "node scripts/verify-exit-module.ts",
+    "net:deploy-dry-run": "HARDHAT_DISABLE_TELEMETRY=true node scripts/deploy-exit-module.ts --dry-run-fork",
+    "net:page-fork-check": "HARDHAT_DISABLE_TELEMETRY=true node scripts/page-fork-check.ts",
+    "net:check-sources": "node scripts/vendor-sources.ts --check",
+    "net:record-fixtures": "node scripts/record-fixtures.ts",
+    "net:record-abis": "node scripts/record-abis.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/loekj/tytle-recovery.git"
+  },
+  "dependencies": {
+    "@scure/bip39": "1.6.0",
+    "uqr": "0.1.3",
+    "viem": "2.57.4"
+  },
+  "devDependencies": {
+    "@types/node": "24.19.1",
+    "esbuild": "0.28.2",
+    "happy-dom": "21.0.4",
+    "hardhat": "3.19.0",
+    "solc": "0.8.20",
+    "typescript": "6.0.3"
+  },
+  "overrides": {
+    "tmp": "0.2.7"
+  }
+}

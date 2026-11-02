@@ -1,0 +1,52 @@
+# SPDX-License-Identifier: GPL-3.0-only
+#
+# Installs exactly the locked packages (no install scripts), checks their
+# registry signatures, runs every test on a local chain (no network), and
+# builds the exit page twice: the two builds must be byte for byte the same.
+#
+# The Publish workflow (publish.yml) calls this one first, with publish: true.
+# Only then does it keep the page it built and tested, for publishing.
+
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_call:
+    inputs:
+      publish:
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version-file: .nvmrc
+      - run: npm ci --ignore-scripts
+      - run: npm audit signatures
+      - run: npm run typecheck
+      - run: npm test
+      - run: npm run check:reproducible
+      - name: The page's hash
+        run: sha256sum dist/*
+      - if: inputs.publish
+        uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9 # v5.0.0
+        with:
+          path: dist/
+      - if: inputs.publish
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: exit-page
+          path: dist/
+          if-no-files-found: error
+          retention-days: 7

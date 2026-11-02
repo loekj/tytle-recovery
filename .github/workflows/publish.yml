@@ -1,0 +1,61 @@
+# SPDX-License-Identifier: GPL-3.0-only
+#
+# Publishes the exit page. It runs only when a maintainer presses "Run
+# workflow" on it in GitHub Actions, on main: a push never publishes.
+#
+# It first runs every check of CI (the CI workflow, called), then publishes the
+# page that those checks built and tested: on GitHub Pages, and on IPFS
+# through Pinata (index.html alone: it holds everything, its licences too).
+# The IPFS job installs no npm package; it alone gets the pinning token (the
+# secret PINATA_JWT).
+
+name: Publish
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: publish
+  cancel-in-progress: false
+
+jobs:
+  test:
+    if: github.ref == 'refs/heads/main'
+    uses: ./.github/workflows/ci.yml
+    with:
+      publish: true
+
+  pages:
+    needs: test
+    runs-on: ubuntu-24.04
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - id: deploy
+        uses: actions/deploy-pages@368f82528645a54fb793d4d04e342629a3f51346 # v5.0.1
+
+  ipfs:
+    needs: test
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version-file: .nvmrc
+      - uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
+        with:
+          name: exit-page
+          path: site/
+      - name: Upload to IPFS and read it back
+        run: node scripts/publish-ipfs.ts site/index.html
+        env:
+          PINATA_JWT: ${{ secrets.PINATA_JWT }}

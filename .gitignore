@@ -1,3 +1,24 @@
+# --- tytle-recovery ---------------------------------------------------------
+# No secret ever enters this repository: no private key, no RPC key, no pinning
+# token. The deploy key comes from an environment variable at run time.
+.env*
+!.env.example
+*.key
+*.pem
+keystore/
+secrets/
+
+# Build and tool output (rebuilt from source; never committed)
+dist/
+artifacts/
+cache/
+.hardhat/
+out/
+
+# Local machine files
+.DS_Store
+
+# --- Node template (GitHub) ---------------------------------------------------
 # Logs
 logs
 *.log

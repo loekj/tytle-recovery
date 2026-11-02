@@ -1,0 +1,93 @@
+{
+  "_provenance": {
+    "what": "The compiler input the deployed 14-day module was verified with (Sourcify exact match, creation and runtime).",
+    "sourcifyUrl": "https://sourcify.dev/server/v2/contract/100/0x9BacD92F4687Db306D7ded5d4513a51EA05df25b?fields=stdJsonInput,metadata,compilation,deployment",
+    "sourcifyMatchId": "8114048",
+    "sourcifyVerifiedAt": "2025-07-23T13:36:16Z",
+    "deployment": {
+      "transactionHash": "0x2a01791fbd4ad81cff21d9b53a86cd47812a56e3d1a71f174e6640ac90cb7e81",
+      "blockNumber": "41234418",
+      "transactionIndex": "5",
+      "deployer": "0x00e6202a8A52a3De6Ce7c45F2e5E299Ec71e875e"
+    }
+  },
+  "compilerVersion": "0.8.20+commit.a1b79de6",
+  "language": "Solidity",
+  "compilationTarget": "candide-contracts/contracts/modules/social_recovery/SocialRecoveryModule.sol:SocialRecoveryModule",
+  "settings": {
+    "viaIR": true,
+    "metadata": {
+      "bytecodeHash": "ipfs",
+      "useLiteralContent": true
+    },
+    "libraries": {},
+    "optimizer": {
+      "runs": 1000000,
+      "enabled": true
+    },
+    "evmVersion": "paris",
+    "remappings": []
+  },
+  "sources": {
+    "@openzeppelin/contracts/interfaces/IERC1271.sol": {
+      "keccak256": "0x0705a4b1b86d7b0bd8432118f226ba139c44b9dcaba0a6eafba2dd7d0639c544",
+      "license": "MIT"
+    },
+    "@openzeppelin/contracts/utils/Strings.sol": {
+      "keccak256": "0x3088eb2868e8d13d89d16670b5f8612c4ab9ff8956272837d8e90106c59c14a0",
+      "license": "MIT"
+    },
+    "@openzeppelin/contracts/utils/cryptography/ECDSA.sol": {
+      "keccak256": "0x809bc3edb4bcbef8263fa616c1b60ee0004b50a8a1bfa164d8f57fd31f520c58",
+      "license": "MIT"
+    },
+    "@openzeppelin/contracts/utils/cryptography/SignatureChecker.sol": {
+      "keccak256": "0x3af3ca86df39aac39a0514c84459d691434a108d2151c8ce9d69f32e315cab80",
+      "license": "MIT"
+    },
+    "@openzeppelin/contracts/utils/math/Math.sol": {
+      "keccak256": "0xe4455ac1eb7fc497bb7402579e7b4d64d928b846fce7d2b6fde06d366f21c2b3",
+      "license": "MIT"
+    },
+    "@openzeppelin/contracts/utils/math/SignedMath.sol": {
+      "keccak256": "0xf92515413956f529d95977adc9b0567d583c6203fc31ab1c23824c35187e3ddc",
+      "license": "MIT"
+    },
+    "@safe-global/safe-contracts/contracts/common/Enum.sol": {
+      "keccak256": "0x4ff3008926a118e9f36e6747facc39dd13168e0d00f516888ae966ec20766453",
+      "license": "LGPL-3.0-only"
+    },
+    "candide-contracts/contracts/interfaces/IFallbackManager.sol": {
+      "keccak256": "0x3833c512470e6a99ef732524fdedf58beb5249b5f01605c7f2bb62076ae5aed0",
+      "license": "LGPL-3.0-only"
+    },
+    "candide-contracts/contracts/interfaces/IGuardManager.sol": {
+      "keccak256": "0x1a92f8530ea74dc3c0c76a061cc6b5727f9be9846de90cb3c8e701d6d9fc4032",
+      "license": "LGPL-3.0-only"
+    },
+    "candide-contracts/contracts/interfaces/IModuleManager.sol": {
+      "keccak256": "0x9ac09886cf5d9ab069a461cfe3622fe2d3ba382243f7719598c603ff1ab534f9",
+      "license": "LGPL-3.0-only"
+    },
+    "candide-contracts/contracts/interfaces/IOwnerManager.sol": {
+      "keccak256": "0x202b83c1c4bed33d117281013c796fa419fea3062c41f97044e90a29a3c9c798",
+      "license": "LGPL-3.0-only"
+    },
+    "candide-contracts/contracts/interfaces/ISafe.sol": {
+      "keccak256": "0xe19333e40eabd3e0b6ca890e79b5f272ed39b3120d061de38a9662df181e1173",
+      "license": "LGPL-3.0-only"
+    },
+    "candide-contracts/contracts/modules/social_recovery/SocialRecoveryModule.sol": {
+      "keccak256": "0xc1569817f18eef8bb1c0a0f504c027e4c70463ff70095b947be2bda683614b7e",
+      "license": "GPL-3.0"
+    },
+    "candide-contracts/contracts/modules/social_recovery/storage/GuardianStorage.sol": {
+      "keccak256": "0x9e51c50c188c7d8123bd36b98ede63c7de7d4300fe64e58ef350465cbab29040",
+      "license": "GPL-3.0"
+    },
+    "candide-contracts/contracts/modules/social_recovery/storage/IGuardianStorage.sol": {
+      "keccak256": "0x4d5e45c7a6a2cc32b77dc0ee61cc07e7665ef6e9e46308fc86c2b0cf2a1973b3",
+      "license": "GPL-3.0"
+    }
+  }
+}

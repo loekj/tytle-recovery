@@ -1,0 +1,139 @@
+[
+  {
+    "name": "ProxyCreation",
+    "type": "event",
+    "inputs": [
+      {
+        "name": "proxy",
+        "type": "address",
+        "indexed": true,
+        "internalType": "contract SafeProxy"
+      },
+      {
+        "name": "singleton",
+        "type": "address",
+        "indexed": false,
+        "internalType": "address"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "name": "createChainSpecificProxyWithNonce",
+    "type": "function",
+    "inputs": [
+      {
+        "name": "_singleton",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "initializer",
+        "type": "bytes",
+        "internalType": "bytes"
+      },
+      {
+        "name": "saltNonce",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "proxy",
+        "type": "address",
+        "internalType": "contract SafeProxy"
+      }
+    ],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "name": "createProxyWithCallback",
+    "type": "function",
+    "inputs": [
+      {
+        "name": "_singleton",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "initializer",
+        "type": "bytes",
+        "internalType": "bytes"
+      },
+      {
+        "name": "saltNonce",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "callback",
+        "type": "address",
+        "internalType": "contract IProxyCreationCallback"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "proxy",
+        "type": "address",
+        "internalType": "contract SafeProxy"
+      }
+    ],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "name": "createProxyWithNonce",
+    "type": "function",
+    "inputs": [
+      {
+        "name": "_singleton",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "initializer",
+        "type": "bytes",
+        "internalType": "bytes"
+      },
+      {
+        "name": "saltNonce",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "proxy",
+        "type": "address",
+        "internalType": "contract SafeProxy"
+      }
+    ],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "name": "getChainId",
+    "type": "function",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "name": "proxyCreationCode",
+    "type": "function",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "bytes",
+        "internalType": "bytes"
+      }
+    ],
+    "stateMutability": "pure"
+  }
+]
