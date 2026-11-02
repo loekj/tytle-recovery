@@ -1,0 +1,12 @@
+{
+  "_provenance": {
+    "what": "The root block that Pinata made for the exit page (index.html, 488479 bytes, sha256 dbb498b0080f8544fdb50af910f11561ef0b1182355204547a13153dced6c43a), read as raw bytes from https://gateway-v3.pinata.cloud/ipfs/bafybeies7t23qws5vce2co7qq3xs3lpuojynvfq2h454g4wm2tdp6bhkym (Accept: application/vnd.ipld.raw)",
+    "recordedAt": "2026-11-02T03:40:00Z"
+  },
+  "cid": "bafybeies7t23qws5vce2co7qq3xs3lpuojynvfq2h454g4wm2tdp6bhkym",
+  "pieces": [
+    { "sha256": "442d619b3f4a7230379069d0a78f048da369651dac37faa62eeb28ba70d56f55", "size": 262144 },
+    { "sha256": "c754f111cf2dbaf86e046ee4435f189deff49ce7a933417161ad646301212d19", "size": 226335 }
+  ],
+  "rootBlock": "122c0a2401551220442d619b3f4a7230379069d0a78f048da369651dac37faa62eeb28ba70d56f55120018808010122c0a2401551220c754f111cf2dbaf86e046ee4435f189deff49ce7a933417161ad646301212d191200189fe80d0a0e0802189fe81d20808010209fe80d"
+}

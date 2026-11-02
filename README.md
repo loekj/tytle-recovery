@@ -8,8 +8,10 @@ your money anywhere at once.
 This repository is public and free software (GPL-3.0). Tytle does not run any part of it. It needs no Tytle server,
 no Tytle web address and no Tytle staff.
 
-> **Status: draft.** The exit contract is deployed on Gnosis, but the exit page is not published yet. Do not use any
-> part of this until this file says it is live. See [Status](#status).
+> **Status: published.** The exit contract is deployed on Gnosis. The exit page is on GitHub Pages,
+> `https://loekj.github.io/tytle-recovery/`, and on IPFS, `bafybeies7t23qws5vce2co7qq3xs3lpuojynvfq2h454g4wm2tdp6bhkym`. An account can use the exit
+> only after Tytle turns it on for that account. Until then, the page says "The 90-day exit is not turned on for this
+> account". See [Status](#status).
 
 ## What this is
 
@@ -59,7 +61,7 @@ days. Open the page again, type your words again, find your account again, tap *
 ### Step 1. Open the real page
 
 1. Type the page's address into your browser yourself, exactly as on your code sheet:
-   `https://loekj.github.io/tytle-recovery/` (not published yet).
+   `https://loekj.github.io/tytle-recovery/`
 2. Never open the page from a link in an e-mail, a text message or a chat. A fake copy of the page can steal your
    money.
 3. Look at the address bar at the top of your browser. It must show the same address as your code sheet, letter
@@ -73,8 +75,51 @@ Two other ways to open the same page:
   on Windows, Cmd+S on a Mac). If the browser asks for a format, choose "HTML only" or "Page source". Later, open the
   saved file with a double-click. It still needs the internet, to talk to the blockchain. A saved copy cannot use a
   wallet extension (see step 4). The usual way (the wallet made from your words) works.
-- **IPFS.** If you use an IPFS app (for example IPFS Desktop), open `ipfs://` followed by the IPFS address on your
-  code sheet. The large free IPFS website, ipfs.io, closed in September 2026.
+- **IPFS.** The same page is also on IPFS. This still works if GitHub stops. See
+  [If GitHub is gone: open the page from IPFS](#if-github-is-gone-open-the-page-from-ipfs).
+
+### If GitHub is gone: open the page from IPFS
+
+The address `https://loekj.github.io/…` works only while GitHub serves this repository. The same page is also on
+IPFS. IPFS is a network of computers that finds a file by its content, not by a company's web address. A file's
+IPFS address is a fingerprint of its bytes, so a changed file has a different address.
+
+The page's IPFS address is on your code sheet. It starts with `bafy`. Today it is:
+
+`bafybeies7t23qws5vce2co7qq3xs3lpuojynvfq2h454g4wm2tdp6bhkym`
+
+**Way 1: only a browser (tested on 2 November 2026).**
+
+1. Type `https://inbrowser.link/ipfs/` and then the IPFS address, as one address:
+   `https://inbrowser.link/ipfs/bafybeies7t23qws5vce2co7qq3xs3lpuojynvfq2h454g4wm2tdp6bhkym`
+2. Wait. The first time, this can take a minute. The site loads a small helper into your browser. The helper gets
+   the page from the IPFS network, and it checks each piece against the IPFS address.
+3. The address bar then shows `https://bafybeies7t23qws5vce2co7qq3xs3lpuojynvfq2h454g4wm2tdp6bhkym.ipfs.inbrowser.link/`. Compare the
+   `bafy…` part with your code sheet, letter for letter.
+4. Continue with step 2 below. To keep a copy, save the page (see "A saved copy" above).
+
+**Way 2: the free IPFS Desktop app (not tested here).**
+
+1. Install IPFS Desktop from `https://docs.ipfs.tech/install/ipfs-desktop/`, and start it.
+2. While it runs, open `http://127.0.0.1:8080/ipfs/` and then the IPFS address in your browser.
+
+**Way 3: the `ipfs` command line (Kubo, not tested here).** This saves the file:
+
+```sh
+ipfs get bafybeies7t23qws5vce2co7qq3xs3lpuojynvfq2h454g4wm2tdp6bhkym -o index.html
+```
+
+Then open `index.html` with a double-click, as a saved copy.
+
+**Check a copy that you got.** Ways 1 and 2 already check every piece against the IPFS address. For a file that you
+saved, or that somebody gave you, compare its sha256 fingerprint with the one in
+[The exit page](#the-exit-page) below:
+
+- Mac or Linux: `shasum -a 256 index.html`
+- Windows: `certutil -hashfile index.html SHA256`
+
+The public IPFS websites ipfs.io and dweb.link stopped serving files in September 2026. Pinata's public website
+(`gateway.pinata.cloud`) refuses web pages. So do not use them for this page.
 
 ### Step 2. Type your 12 words
 
@@ -299,8 +344,17 @@ npm run net:verify -- --tx 0x4c72845ad71c59d7668e312b316051274f43f8119881a98c85f
 ### The exit page
 
 The page is one file, `index.html`, with its script and style inside it. The build is reproducible: the same source
-always gives the same bytes. Build it and compare its hash with the hash listed here (listed once it is published),
-and with the file you opened:
+always gives the same bytes. The published page:
+
+| What | Value |
+|---|---|
+| GitHub Pages | `https://loekj.github.io/tytle-recovery/` |
+| IPFS address (CID) | `bafybeies7t23qws5vce2co7qq3xs3lpuojynvfq2h454g4wm2tdp6bhkym` |
+| Open it from IPFS in a browser | `https://inbrowser.link/ipfs/bafybeies7t23qws5vce2co7qq3xs3lpuojynvfq2h454g4wm2tdp6bhkym` |
+| sha256 of `index.html` | `dbb498b0080f8544fdb50af910f11561ef0b1182355204547a13153dced6c43a` |
+| Size | 488,479 bytes |
+
+Build it yourself and compare its hash with the hash above, and with the file you opened:
 
 ```sh
 npm ci --ignore-scripts
@@ -311,7 +365,11 @@ The licences of the packages inside the page are in a comment at the end of `ind
 them. `dist/licenses.txt` holds the same text.
 
 The IPFS copy is `index.html` alone. Its address is a hash of the file, so a copy with other bytes has another
-address. CI prints the file's sha256 before it publishes.
+address. Compute the address of a file yourself (no token, no network):
+
+```sh
+node scripts/publish-ipfs.ts --cid dist/index.html   # prints the sha256 and the IPFS address
+```
 
 ## Safety
 
@@ -437,16 +495,21 @@ A push never publishes. The page goes live only when a maintainer presses a butt
 6. Open the run. Its summary shows the page's IPFS address (CID) and its sha256. Write both into this README.
 
 If a job fails, open it and read its last lines. To try again, click **Re-run failed jobs**. This is safe: the same
-page always gets the same IPFS address.
+page always gets the same IPFS address. A re-run uses the code of the first run. After a fix on `main`, start a new
+run with **Run workflow** instead.
 
 The Publish workflow (`.github/workflows/publish.yml`) publishes the page that CI's checks built and tested, twice:
 
 - **GitHub Pages**, with GitHub's own Pages actions.
 - **IPFS**, uploaded to Pinata by `scripts/publish-ipfs.ts` (Pinata's v3 upload; the key needs only the permission
   Files: Write). This job installs no npm package (the script uses only Node's own modules), and only this job gets
-  the token, from the repository secret `PINATA_JWT`. After the upload, it reads the page back by its address and
-  compares it byte for byte. The same bytes give the same address, so a new run is safe. A change to this README
-  does not change the address; a change to the page does.
+  the token, from the repository secret `PINATA_JWT`. The job computes the page's IPFS address from the built file
+  itself (the same layout as Pinata and Kubo: pieces of 256 KiB, raw blocks, CIDv1), and Pinata's answer must be
+  that address. Then it reads each block back as raw bytes from the endpoint that Pinata announces to the IPFS
+  network (`gateway-v3.pinata.cloud`), and compares it byte for byte. It also asks the public IPFS routing
+  (`delegated-ipfs.dev`) whether the file is listed; that answer is only reported. Pinata's public gateway
+  (`gateway.pinata.cloud`) refuses HTML files, so the job does not use it. The same bytes give the same address, so
+  a new run is safe. A change to this README does not change the address; a change to the page does.
 
 ```sh
 PINATA_JWT=... node scripts/publish-ipfs.ts dist/index.html   # by hand; the token comes only from the environment
@@ -463,16 +526,17 @@ dry call returns the predicted address. After it sends, it checks the new code b
 
 | Part | State |
 |---|---|
-| Repository skeleton, this README | draft |
+| Repository skeleton, this README | done |
 | Bytecode match of the 14-day copy | done: byte for byte |
 | 90-day copy and its CREATE2 address | done: `0x3EBf48D76BA83afee8bC4606F3Cff65dBb0BaECf` |
 | Dry run on a local fork of Gnosis | done |
 | Deploy on Gnosis | done: block 49,062,599; verified on Sourcify (exact match) and Blockscout |
-| Exit page | built, with its tests; not published |
-| Tests | 89 tests on a local chain: the contract, the deploy, the page from the words to the send, the hard cases, and the IPFS publish |
+| Exit page | published on GitHub Pages and on IPFS (see [The exit page](#the-exit-page)) |
+| Tests | 95 tests on a local chain: the contract, the deploy, the page from the words to the send, the hard cases, and the IPFS publish |
 | Fork check with real EURe | done: the whole balance moved, on a local fork of Gnosis |
 | The way without this page | written (page help and this README); not tested from end to end on Gnosis |
-| GitHub Pages and IPFS | CI workflow ready; not published |
+| GitHub Pages and IPFS | published by the Publish workflow; the IPFS copy opens in a browser through inbrowser.link (tested) |
+| Accounts | the exit works for an account only after Tytle turns it on for that account |
 
 ## Licence
 
